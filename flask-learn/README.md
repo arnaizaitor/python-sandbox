@@ -14,6 +14,8 @@ Go to ```localhost:5000``` or to ```http://0.0.0.0:5000/``` to access the runnin
 
 # How to run the Flask app on local without launching the Docker container
 
+0. Meet all the Python libraries requirements inside ```requirements.txt```
+
 1. Export the ```FLASK_APP``` environment variable as ```export FLASK_APP=app.py```
 
 2. Run the Flask server as ```flask run```
