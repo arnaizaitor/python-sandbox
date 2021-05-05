@@ -1,3 +1,5 @@
+![docker-python-api-1024x533](https://user-images.githubusercontent.com/38442315/117200783-2b94ef00-adec-11eb-866c-f9791c3c5a91.jpg)
+
 # How to run the dockerized Flask app on local
 
 1. Build the Docker Image:
@@ -23,3 +25,9 @@ Go to ```localhost:5000``` or to ```http://0.0.0.0:5000/``` to access the runnin
 3. Access the app from the browser:
 
 Go to ```localhost:5000``` or to ```http://0.0.0.0:5000/``` to access the running flask app.
+
+# How to run the Flask app on local on debug mode
+
+The debug mode is very useful while we are developing, because each tame we make a change to our code, the server will restart without needing us to restart it manually.
+
+Apart from all the steps above to launch the Flask server manually, before executing the step **2**, we will need to set the environment variable ```FLASK_ENV``` into **development** as it follows: ```export FLASK_ENV="development"```.
