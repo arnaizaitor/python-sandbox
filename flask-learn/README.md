@@ -28,6 +28,6 @@ Go to ```localhost:5000``` or to ```http://0.0.0.0:5000/``` to access the runnin
 
 # How to run the Flask app on local on debug mode
 
-The debug mode is very useful while we are developing, because each tame we make a change to our code, the server will restart without needing us to restart it manually.
+The debug mode is very useful while we are developing, because each time we make a change to our code, the server will restart without needing us to restart it manually.
 
 Apart from all the steps above to launch the Flask server manually, before executing the step **2**, we will need to set the environment variable ```FLASK_ENV``` into **development** as it follows: ```export FLASK_ENV="development"```.
