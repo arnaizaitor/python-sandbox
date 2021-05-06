@@ -1,0 +1,41 @@
+html {
+    font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+    line-height: 1.5;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+body{
+    margin: 0;
+}
+
+main{
+    padding-bottom: 30px;
+}
+
+.index-div{
+    width: 100vw;
+    border-style: solid;
+    border-width: 0.5px;
+    border-left: transparent;
+    border-right: transparent;
+
+    color: black;
+}
+
+.index-div a{
+    text-decoration: none;
+    color: black;
+}
+
+.index-div a:hover{
+    color: coral;
+}
+
+.index-div-even{
+    background-color: rgb(240, 240, 240);
+}
+
+.index-div-odd{
+    background-color: rgb(215, 215, 215);
+}

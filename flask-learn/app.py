@@ -1,10 +1,9 @@
 from flask import Flask
 from flask import render_template
 
-app = Flask(__name__)
+from data.data import posts
 
-###################### G L O B A L   V A R I A B L E S ######################
-posts = ['Alpha', 'Beta', 'Gamma', 'Delta']
+app = Flask(__name__, template_folder='./frontend/templates',static_folder='./frontend/static')
 
 #############################   R O U T I N G   #############################
 @app.route('/')
