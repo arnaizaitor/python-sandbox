@@ -23,6 +23,9 @@ main{
     border-right: transparent;
 
     color: black;
+    line-height: 2.5vh;
+
+    height: 2.5vh;
 }
 
 .index-div a{
