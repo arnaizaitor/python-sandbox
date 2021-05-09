@@ -8,21 +8,40 @@
 </head>
 <body>
     <div id="main">
-        {% for post in posts %}
-            {% if loop.index%2 == 0 %}
-                <div class="index-div index-div-even">
-                    <a href={{ url_for('show_post_slug', slug = post) }}>
-                        {{ post }}
-                    </a>
-                </div>
-            {% else %}
-                <div class="index-div index-div-odd">
-                    <a href={{ url_for('show_post_slug', slug = post) }}>
-                        {{ post }}
-                    </a>
-                </div>
-            {% endif %}
-        {% endfor %}
+
+        <!-- H E A D E R -->
+        <div id="header">
+            <div id="index-title-content">
+                <h1>Recent posts</h1>
+            </div>
+        </div>
+
+        <!-- P O S T S -->
+        <div id="posts">
+            {% for post in posts %}
+                {% if loop.index%2 == 0 %}
+                    <div class="index-div index-div-even">
+                        <a href={{ url_for('show_post_slug', slug = post) }}>
+                            {{ post }}
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="index-div index-div-odd">
+                        <a href={{ url_for('show_post_slug', slug = post) }}>
+                            {{ post }}
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- F O O T E R -->
+        <footer id="footer">
+            <div id="index-footer-content">
+                <span> Copyright 2016, Original Trombones </span>
+            </div>
+        </footer>
+
     </div>
 </body>
 </html>
