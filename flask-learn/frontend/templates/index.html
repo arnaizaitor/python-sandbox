@@ -5,6 +5,9 @@
     <title>Tutorial Flask: Miniblog</title>
     <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oi&display=swap');
+    </style>
 </head>
 <body>
     <div id="main">
@@ -38,7 +41,29 @@
         <!-- F O O T E R -->
         <footer id="footer">
             <div id="index-footer-content">
-                <span> Copyright 2016, Original Trombones </span>
+                <!-- V O I D -->
+                <div id="void-footer-div"></div>
+
+                <!-- L E F T -->
+                <div id="left-footer-div">
+                    {%if posts.page != 0%}
+                        <a class="page-link" href={{ url_for('home', pagenum = posts.page-1) }}> < </a>
+                    {%endif%}
+                </div>
+                <!-- C E N T E R -->
+                <div id="center-footer-div">
+                    {{posts.page}}
+                </div>
+
+                <!-- R I G H T -->
+                <div id="right-footer-div">
+                    {% if not posts.isLastPage and not posts.isVoidNextPage %}
+                        <a class="page-link" href = {{ url_for('home', pagenum = posts.page+1) }}> > </a>
+                    {% endif %}
+                </div>
+
+                <!-- V O I D -->
+                <div id="void-footer-div"></div>
             </div>
         </footer>
 
