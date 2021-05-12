@@ -3,6 +3,7 @@ html {
     line-height: 1.5;
     font-size: 15px;
     font-weight: 400;
+    overflow-y: hidden;
 }
 
 body{
@@ -13,10 +14,12 @@ body{
     padding-bottom: 30px;
     background-repeat: no-repeat, repeat;
     overflow-x: hidden;
-    /*height: 100vh;*/
+    height: 100vh;
 
     background-color: rgb(240, 240, 240);;
 }
+
+/* INDEX PAGE */
 
 #header{
     position: fixed;
@@ -39,6 +42,7 @@ body{
     margin-top: 10vh;
 
     height: 80vh;
+    position: fixed;
 }
 
 .index-div{
@@ -68,11 +72,6 @@ body{
 
 .index-div-odd{
     background-color: rgb(215, 215, 215);
-}
-
-#title-content{
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 #index-title-content{
@@ -114,6 +113,8 @@ position: relative;
     position: fixed;
     white-space: nowrap;
     padding-bottom: 25px;
+
+    margin-top: 90vh;
   
     background-color: #333333;
   
@@ -160,4 +161,21 @@ position: relative;
 
 .page-link:hover{
     color: rgb(0, 160, 256)
+}
+
+/* POST VIEW */
+
+#post-body{
+    text-align: center;
+    color: whitesmoke;
+    height: 100vh;
+
+    background-color: #333333;
+}
+
+#title-content{
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    height: 10vh;
 }
