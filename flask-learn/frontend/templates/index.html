@@ -24,13 +24,13 @@
             {% for post in posts %}
                 {% if loop.index%2 == 0 %}
                     <div class="index-div index-div-even">
-                        <a href={{ url_for('show_post_slug', slug = post) }}>
+                        <a href={{ url_for('show_post_content', title = post) }}>
                             {{ post }}
                         </a>
                     </div>
                 {% else %}
                     <div class="index-div index-div-odd">
-                        <a href={{ url_for('show_post_slug', slug = post) }}>
+                        <a href={{ url_for('show_post_content', title = post) }}>
                             {{ post }}
                         </a>
                     </div>
