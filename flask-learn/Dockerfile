@@ -3,6 +3,8 @@ FROM python:3
 WORKDIR /app
 
 EXPOSE 5000
+EXPOSE 27017
+
 ENV FLASK_APP=app.py
 ENV FLASK_ENV="development"
 

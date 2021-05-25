@@ -22,7 +22,7 @@ def home(pagenum = 0):
 
 @app.route('/post/<string:title>/')
 def show_post_content(title):
-    post_body = mongo.db.posts.find_one({"title":"Lorem ipsum dolor sit amet"})['content']
+    post_body = mongo.db.posts.find_one({"title":title})['content']
     return render_template("post_view.html", post_title = title, post_body = post_body)
 
 @app.route("/admin/post/")
