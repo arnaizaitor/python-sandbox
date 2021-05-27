@@ -25,11 +25,14 @@ class PrimeFunctionalities():
                 res.append([elem, L.count(elem)])
         return res
 
-    #devuelve una lista de sublistas [elemento, exponente] que son los factores primos y sus exponentes del numero argumento
+    ################################################################################
+    # arguments: n: number to factorize
+    # returns: A list made of sublists [element, exponent] of the argument prime factors
+    ################################################################################
     def factorize(this, n):
-        L = [] #lista con la factorizacion del numero, en forma de sublistas [primo, exponente]
-        i = 0 #numero de pares [primo, exponente] en L
-        flag = 0 #condicion de parada
+        L = [] #list with the factorization of the argument number made of sublists [prime, exponent]
+        i = 0 #number of pairs [prime, exponent] in L
+        flag = 0 #stop condition
         
         if(n == 1):
             return [[1, 1]]
@@ -43,7 +46,22 @@ class PrimeFunctionalities():
 
         return this.countListAppearances(L)
 
-    #minimo comun multiplo de los elementos pasados en la lista argumento
+    ################################################################################
+    # arguments: n: number to get its divisors
+    # returns: A list made of all its divisors, including itself and one
+    ################################################################################
+    def divisors(this, n):
+        divs = []
+        for i in range(1,int(n/2)+1):
+            if n%i == 0: divs.append(i)             
+        divs.append(n)
+        
+        return divs
+
+    ################################################################################
+    # arguments: L: List of numbers to find its min common multiple
+    # returns: res: Minimum common multiple of the numbers in the argument list
+    ################################################################################
     def mcm(this, L):
         primes = []
         exponents = []
@@ -52,10 +70,10 @@ class PrimeFunctionalities():
         for num in L:
             factors = this.factorize(num)
             for duple in factors:
-                if (duple[0] not in primes): #si el primo no estaba ya en la lista lo metemos en la lista de primos
+                if (duple[0] not in primes): # if the prime wasnt in the list of primes, we include it in the list
                     primes.append(duple[0])
                     exponents.append(duple[1])
-                elif (exponents[primes.index(duple[0])] < duple[1]): #si estaba, pero con exponente menor, lo modificamos por el mayor
+                elif (exponents[primes.index(duple[0])] < duple[1]): #if it was, but with lesser exponent, we change it by the on with the greater
                     exponents[primes.index(duple[0])] = duple[1]
 
         for i in range(len(primes)):
@@ -63,14 +81,17 @@ class PrimeFunctionalities():
 
         return res
 
-    #devuelve una lista de factores primos del numero argumento
+    ################################################################################
+    # arguments: n: Number of which we want to know its prime factors
+    # returns: L: listed set of the prime factors of the argument number
+    ################################################################################
     def primeFactors(this, n):
-        L = set() #lista con la factorizacion del numero, en forma de lista [primo1, primo2, ..., primoN]
+        L = set() #listed set of the prime factors of the argument number,  listed as [prime1, prime2, ..., primeN]
         L.add(1)
         L.add(n)
 
-        i = 0 #numero de factores en L
-        flag = 0 #condicion de parada
+        i = 0 #number of factors in L
+        flag = 0 #stop condition
         
         if(n == 1):
             return [1]
@@ -84,6 +105,10 @@ class PrimeFunctionalities():
 
         return list(L)
 
+    ################################################################################
+    # arguments: L: List of numfers of which we want to know their common factors
+    # returns: CommonFactors: listof common factors of the numbers in the input list
+    ################################################################################
     def commonFactors(this, L):
         CommonFactors = []
 
@@ -100,7 +125,10 @@ class PrimeFunctionalities():
 
         return CommonFactors
 
-    #minimo comun multiplo de los elementos pasados en la lista argumento
+    ################################################################################
+    # arguments: L: List of numbers to find its max common divisor
+    # returns: res: Max common divisor of the numbers in the argument list
+    ################################################################################
     def MCD(this, L):
         primes = []
         exponents = []
@@ -111,10 +139,10 @@ class PrimeFunctionalities():
             factors = this.factorize(num)
             for duple in factors:
                 if(duple[0] in CommonFactors):
-                    if (duple[0] not in primes): #si el primo no estaba ya en la lista lo metemos en la lista de primos
+                    if (duple[0] not in primes): # if the prime wasnt in the list of primes, we include it in the list
                         primes.append(duple[0])
                         exponents.append(duple[1])
-                    elif (exponents[primes.index(duple[0])] > duple[1]): #si estaba, pero con exponente mayor, lo modificamos por el menor
+                    elif (exponents[primes.index(duple[0])] > duple[1]): #if it was, but with greater exponent, we change it by the on with the lesser
                         exponents[primes.index(duple[0])] = duple[1]
 
         for i in range(len(primes)):
