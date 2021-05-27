@@ -1,3 +1,7 @@
+import os
+import glob
+import imageio
+from matplotlib import image
 import numpy as np
 from numpy import asarray
 from PIL import Image
@@ -69,57 +73,103 @@ class Pyxelator():
 
         return relocated_pixels
 
-    def rotate(self, matrix) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
-        n = len(matrix)
-        
-        # Preste atención al alcance y subíndice
-        for i in range(n//2):
-            for j in range(i, n-1-i):
-                matrix[i][j], matrix[j][n-1-i], matrix[n-1-i][n-1-j], matrix[n-1-j][i] = \
-                matrix[n-1-j][i], matrix[i][j], matrix[j][n-1-i], matrix[n-1-i][n-1-j]
-
     ################################################################################
     # arguments: new_pixels: list of pixels in correct position
     # returns: None 
     ################################################################################
-    def save_pixelyzed_image(this, new_pixels):
+    def save_pixelyzed_image(this, new_pixels, output_route):
         plt.axis('off')
         plt.imshow(asarray(new_pixels))
-        plt.savefig('../images/try.png', transparent=True)
+        plt.savefig(output_route, transparent=True)
+        return
+
+    ################################################################################
+    # arguments: input_route: route of the image to pixelize
+    #            output_route: route of the pixelyzed image
+    #            pixel-len: length of the new pixels
+    # returns: None 
+    ################################################################################
+    def pyxelize(this, input_route, output_route, pixel_len=2):
+        # load the image
+        image = Image.open(input_route)
+        # We store its dimensions
+        old_x = image.size[0]
+        old_y = image.size[1]
+        # We calculate the new dimensions of the image
+        new_x = int(old_x/pixel_len)
+        new_y = int(old_y/pixel_len)
+        ####################
+        # IMAGE PROCESSING #
+        ####################
+        # We relocate the image pixels in order to pixelyze the image
+        relocated_pixels = this.relocate_pixels(image, pixel_len) 
+        # We make the average pixels of the previous image in order to pixelyze it
+        avg_pixels = this.average_pixels(relocated_pixels)
+        # We relocate the average pixels in their correct positions in order to remake the image
+        final_pixels = this.pixelate_image(avg_pixels, new_x, new_y)
+        # We rotate the matrix 270 degrees
+        final_pixels = np.rot90(np.rot90(np.rot90(final_pixels)))
+        # We flip the rows
+        final_pixels = [row[::-1] for row in final_pixels]
+        # We store the final image
+        this.save_pixelyzed_image(final_pixels, output_route)
+
+
+    ################################################################################
+    # arguments: input_route: route of the image to pixelize
+    #            output_route_dir: route of the dir where we will store the pixelyzed images
+    # returns: None 
+    ################################################################################
+    def pyxelize_several(this, input_route, output_route_dir):
+        # We create an instance of the PrimeFunctionalities
+        pf = PrimeFunctionalities()
+
+        # If the output dir doesnt exist, we create it
+        if(not os.path.exists(output_route_dir)):
+            os.makedirs(output_route_dir)
+        
+        # We calculate the max possible pyxel length
+        # load the image
+        image = Image.open(input_route)
+        # We calculate the max pixel length
+        pixel_len = pf.MCD(list(image.size))
+        # We calculate the possible pixel lengths
+        pixel_lens_list = sorted(pf.divisors(pixel_len))
+
+        # To pixelize with several pixel lengths
+        image_index = 1
+        for length in pixel_lens_list:
+            this.pyxelize(input_route, 
+                          os.path.join(output_route_dir, 
+                                       str(image_index) + '_' + input_route[input_route.rfind('/') + 1 : input_route.rfind('.')] + '_' + str(length) + 'px.png'),
+                          length)
+            image_index += 1
+
         return
 
 
-# We create an instance of the Pyxelator
-px = Pyxelator()
-# We create an instance of the PrimeFunctionalities
-pf = PrimeFunctionalities()
-# load the image
-image = Image.open('../images/parrots.jpeg')
-# We store its dimensions
-old_x = image.size[0]
-old_y = image.size[1]
-# We calculate the new pixel length
-pixel_len = pf.MCD(list(image.size))
-pixel_len = int(pixel_len/6)
-# We calculate the new dimensions of the image
-new_x = int(old_x/pixel_len)
-new_y = int(old_y/pixel_len)
+    ################################################################################
+    # arguments: images_dir: directory of the images to make a gif of
+    #            output_gif_dir: route of the dir where we will store the gif
+    # returns: None 
+    ################################################################################
+    def generate_gif(this, images_dir, output_gif_dir):
+        # If the output dir doesnt exist, we create it
+        if(not os.path.exists(output_gif_dir)):
+            os.makedirs(output_gif_dir)
 
-####################
-# IMAGE PROCESSING #
-####################
-# We relocate the image pixels in order to pixelyze the image
-relocated_pixels = px.relocate_pixels(image, pixel_len) 
-# We make the average pixels of the previous image in order to pixelyze it
-avg_pixels = px.average_pixels(relocated_pixels)
-# We relocate the average pixels in their correct positions in order to remake the image
-final_pixels = px.pixelate_image(avg_pixels, new_x, new_y)
-# We rotate the matrix 270 degrees
-final_pixels = np.rot90(np.rot90(np.rot90(final_pixels)))
-# We flip the rows
-final_pixels = [row[::-1] for row in final_pixels]
-# We store the final image
-px.save_pixelyzed_image(final_pixels)
+        img, *imgs = [Image.open(os.path.join(images_dir, f)) for f in sorted(os.listdir(images_dir))]
+        img.save(fp=str(os.path.join(output_gif_dir, images_dir[images_dir.rfind('/') + 1 : ]) + '.gif'), format='GIF', append_images=imgs,
+                 save_all=True, duration=100, loop=0)
+
+        return
+
+
+
+if(__name__ == '__main__'):
+    # We create an instance of the Pyxelator
+    px = Pyxelator()
+    # We pixelate the image
+    #px.pyxelize_several('../images/input/parrots.jpeg', '../images/output/parrot')
+    # We generate the gif with the pixelated images
+    px.generate_gif('../images/output/parrot', '../images/gifs/parrot')
