@@ -1,17 +1,18 @@
 import os
-import glob
-import imageio
-from matplotlib import image
 import numpy as np
-from numpy import asarray
 from PIL import Image
-from primeFunctionalities import *
+from numpy import asarray
+from matplotlib import image
+from utils import natural_keys
 import matplotlib.pyplot as plt
+from primeFunctionalities import *
+
 
 class Pyxelator():
 
     ################################################################################
     # arguments: image: image we want to pixelate passed as a pillow Image
+    #            pyxel_len: length of the new pixel for the image to pixelate
     # returns: pre_pyxel: list of lists with pixels to make average of them
     ################################################################################
     def relocate_pixels(this, image, pyxel_len):
@@ -35,6 +36,7 @@ class Pyxelator():
 
         return pre_pyxel
 
+
     ################################################################################
     # arguments: pre_pyxel: list of lists with pixels to make average of them
     # returns: avg_pixels: list of averaged pixels
@@ -53,6 +55,7 @@ class Pyxelator():
             avg_pixels.append(list((int(r_acc/pre_pyxels_count), int(g_acc/pre_pyxels_count), int(b_acc/pre_pyxels_count))))
             
         return avg_pixels
+
 
     ################################################################################
     # arguments: avg_pixels: list of averaged pixels
@@ -73,6 +76,7 @@ class Pyxelator():
 
         return relocated_pixels
 
+
     ################################################################################
     # arguments: new_pixels: list of pixels in correct position
     # returns: None 
@@ -82,6 +86,7 @@ class Pyxelator():
         plt.imshow(asarray(new_pixels))
         plt.savefig(output_route, transparent=True)
         return
+
 
     ################################################################################
     # arguments: input_route: route of the image to pixelize
@@ -158,9 +163,30 @@ class Pyxelator():
         if(not os.path.exists(output_gif_dir)):
             os.makedirs(output_gif_dir)
 
-        img, *imgs = [Image.open(os.path.join(images_dir, f)) for f in sorted(os.listdir(images_dir))]
+        img, *imgs = [Image.open(os.path.join(images_dir, f)) for f in sorted(os.listdir(images_dir), key=natural_keys)]
         img.save(fp=str(os.path.join(output_gif_dir, images_dir[images_dir.rfind('/') + 1 : ]) + '.gif'), format='GIF', append_images=imgs,
                  save_all=True, duration=100, loop=0)
+
+        return
+
+
+    ################################################################################
+    # arguments: input_image_route: directory of the images to pixelate and make a gif of
+    # returns: None 
+    ################################################################################
+    def generate_pixels_and_gif(this, input_image_route):
+        # We calculate the output dir 
+        # '../images/input/parrots/parrots.jpeg' '../images/output/parrots'
+        pixelated_images_route = os.path.join('../images/output/',
+                                    input_image_route[input_image_route.rfind('/') + 1 : input_image_route.rfind('.')])
+        # We pixelate the image
+        this.pyxelize_several(input_image_route, pixelated_images_route)
+
+        # We calculate the gif dir
+        output_gif_route = os.path.join('../images/gifs/',
+                                    input_image_route[input_image_route.rfind('/') + 1 : input_image_route.rfind('.')])
+        # We generate the gif with the pixelated images
+        this.generate_gif(pixelated_images_route, output_gif_route)
 
         return
 
@@ -169,7 +195,5 @@ class Pyxelator():
 if(__name__ == '__main__'):
     # We create an instance of the Pyxelator
     px = Pyxelator()
-    # We pixelate the image
-    #px.pyxelize_several('../images/input/parrots.jpeg', '../images/output/parrot')
-    # We generate the gif with the pixelated images
-    px.generate_gif('../images/output/parrot', '../images/gifs/parrot')
+    # We pixelate the image and create the gif
+    px.generate_pixels_and_gif('../images/input/parrots/parrots.jpeg')

@@ -12,6 +12,7 @@ class PrimeFunctionalities():
             if(n%i == 0):
                 return [i, int(n/i)]
 
+
     ################################################################################
     # arguments: L: generic list from which we want to count its elements appearances
     # returns: res: A list made of sublists [element, appearances] in the argument list
@@ -24,6 +25,7 @@ class PrimeFunctionalities():
                 d.append(elem)
                 res.append([elem, L.count(elem)])
         return res
+
 
     ################################################################################
     # arguments: n: number to factorize
@@ -46,6 +48,7 @@ class PrimeFunctionalities():
 
         return this.countListAppearances(L)
 
+
     ################################################################################
     # arguments: n: number to get its divisors
     # returns: A list made of all its divisors, including itself and one
@@ -55,8 +58,9 @@ class PrimeFunctionalities():
         for i in range(1,int(n/2)+1):
             if n%i == 0: divs.append(i)             
         divs.append(n)
-        
+
         return divs
+
 
     ################################################################################
     # arguments: L: List of numbers to find its min common multiple
@@ -105,6 +109,7 @@ class PrimeFunctionalities():
 
         return list(L)
 
+
     ################################################################################
     # arguments: L: List of numfers of which we want to know their common factors
     # returns: CommonFactors: listof common factors of the numbers in the input list
@@ -124,6 +129,7 @@ class PrimeFunctionalities():
                 CommonFactors.append(factor)
 
         return CommonFactors
+
 
     ################################################################################
     # arguments: L: List of numbers to find its max common divisor
