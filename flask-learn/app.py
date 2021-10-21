@@ -14,7 +14,7 @@ mongo = PyMongo(app, connect=True)
 
 #############################   R O U T I N G   #############################
 @app.route('/')
-@app.route('/posts')
+@app.route('/posts/')
 @app.route('/posts/<int:pagenum>')
 def home(pagenum = 0):
     postList = [post['title'] for post in list(mongo.db.posts.find({}))]

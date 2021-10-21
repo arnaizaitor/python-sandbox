@@ -1,93 +1,98 @@
 html {
-    font-family: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
     line-height: 1.5;
     font-size: 15px;
-    font-weight: 400;
-    overflow-y: hidden;
+    font-weight: bold;
+
+    background-color: rgb(50, 50, 50);
 }
 
 body{
     margin: 0;
+    padding-bottom: 5vh;
+    padding-top: 5vh;
+    overflow-x: hidden;
+}
+
+#index-body{
+    margin-left: 20vw;
+    height: auto;
+    width: 58vw;
+    margin-right: 21vw;
+    padding-top: 21px;
+    padding-bottom: 20px;
+
+    background-color: rgb(82, 85, 89);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
 }
 
 #main{
-    padding-bottom: 30px;
     background-repeat: no-repeat, repeat;
-    overflow-x: hidden;
     height: 100vh;
 
-    background-color: rgb(240, 240, 240);;
+    background-color: rgb(50, 50, 50);
 }
 
 /* INDEX PAGE */
 
 #header{
-    position: fixed;
     white-space: nowrap;
-    margin-bottom: 5px;
   
-    background-color: #333333;
+    background-color: rgb(82, 85, 89);
   
-    width: 100%;
+    width: 58vw;
     height: 10vh;
-
-    border: solid;
     border-left: transparent;
     border-right: transparent;
     border-top: transparent;
+    border-bottom: transparent;
     border-color: black;
+
+    padding-top: 20px;
 }
 
 #posts{
-    margin-top: 10vh;
-
-    height: 80vh;
-    position: fixed;
+    width: 58vw;
+    background-color: rgb(82, 85, 89);
+    border-top: transparent;
 }
 
 .index-div{
-    width: 100vw;
     border-left: transparent;
     border-right: transparent;
 
     color: black;
-    line-height: 2.5vh;
+    line-height: 3.5vh;
 
-    height: 2.5vh;
+    height: 3.5vh;
+    height: auto;
+    padding-left: 25px;
+    background-color: rgb(82, 85, 89);
+    
+    padding: auto;
 }
 
 .index-div a{
     text-decoration: none;
-    color: black;
-    margin-left: 15px;
+    color: rgb(90, 200, 250);
 }
 
 .index-div a:hover{
-    color: rgb(0, 160, 256);
-}
-
-.index-div-even{
-    background-color: rgb(240, 240, 240);
-}
-
-.index-div-odd{
-    background-color: rgb(215, 215, 215);
+    color: rgb(255, 255, 255);
 }
 
 #index-title-content{
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 15px;
 
     line-height: 3vh;
 }
 
 #index-footer-content{
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 7px;
+    margin-bottom: 10px;
     width: 100vw;
-
+    height: 5vh;
     line-height: 3vh;
-
     text-align: center;
 }
 
@@ -97,41 +102,42 @@ font-weight: bold;
 font-size: 30px;
 text-align: center;
 position: relative;
+padding-left: 25px;
 }
 
 #index-title-content h1{
-    font-family: "Lato";
+    font-family: -apple-system, BlinkMacSystemFont, 'Lato';
     font-weight: bold;
-    font-size: 30px;
-    text-align: center;
+    font-size: 35px;
+    text-align: left;
     position: relative;
+    padding-left: 25px;
 
     color: whitesmoke;
 }
 
 #footer{
-    position: fixed;
+    text-shadow: 0 6px 10px rgb(0 0 0 / 0.6);
     white-space: nowrap;
     padding-bottom: 25px;
 
-    margin-top: 90vh;
+    margin-top: 25px;
   
     background-color: #333333;
   
     width: 100vw;
-    height: 10vh;
+    height: 5vh;
 
-    border: solid;
     border-left: transparent;
     border-right: transparent;
     border-bottom: transparent;
-    border-color: black;
 }
 
 #left-footer-div{
     display: inline-block;
     width: 3vw;
     background-color: inherit;
+    font-size: 10px;
 }
 
 #center-footer-div{
@@ -146,6 +152,7 @@ position: relative;
     display: inline-block;
     width: 3vw;
     background-color: inherit;
+    font-size: 10px;
 }
 
 #void-footer-div{
@@ -156,11 +163,11 @@ position: relative;
 .page-link{
     color: whitesmoke;
     text-decoration: none;
-    font-size: 50px;
+    font-size: 25px;
 }
 
 .page-link:hover{
-    color: rgb(0, 160, 256)
+    color: rgb(90, 200, 250);
 }
 
 /* POST VIEW */

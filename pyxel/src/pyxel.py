@@ -13,7 +13,7 @@ class Pyxelator():
     ################################################################################
     # arguments: image: image we want to pixelate passed as a pillow Image
     #            pyxel_len: length of the new pixel for the image to pixelate
-    # returns: pre_pyxel: list of lists with pixels to make average of them
+    # returns:   pre_pyxel: list of lists with pixels to make average of them
     ################################################################################
     def relocate_pixels(this, image, pyxel_len):
         size = image.size
@@ -39,7 +39,7 @@ class Pyxelator():
 
     ################################################################################
     # arguments: pre_pyxel: list of lists with pixels to make average of them
-    # returns: avg_pixels: list of averaged pixels
+    # returns:   avg_pixels: list of averaged pixels
     ################################################################################
     def average_pixels(this, pre_pyxel):
         avg_pixels = []
@@ -79,7 +79,7 @@ class Pyxelator():
 
     ################################################################################
     # arguments: new_pixels: list of pixels in correct position
-    # returns: None 
+    # returns:   None 
     ################################################################################
     def save_pixelyzed_image(this, new_pixels, output_route):
         plt.axis('off')
@@ -92,7 +92,7 @@ class Pyxelator():
     # arguments: input_route: route of the image to pixelize
     #            output_route: route of the pixelyzed image
     #            pixel-len: length of the new pixels
-    # returns: None 
+    # returns:   None 
     ################################################################################
     def pyxelize(this, input_route, output_route, pixel_len=2):
         # load the image
@@ -123,7 +123,7 @@ class Pyxelator():
     ################################################################################
     # arguments: input_route: route of the image to pixelize
     #            output_route_dir: route of the dir where we will store the pixelyzed images
-    # returns: None 
+    # returns:   None 
     ################################################################################
     def pyxelize_several(this, input_route, output_route_dir):
         # We create an instance of the PrimeFunctionalities
@@ -156,7 +156,7 @@ class Pyxelator():
     ################################################################################
     # arguments: images_dir: directory of the images to make a gif of
     #            output_gif_dir: route of the dir where we will store the gif
-    # returns: None 
+    # returns:   None 
     ################################################################################
     def generate_gif(this, images_dir, output_gif_dir):
         # If the output dir doesnt exist, we create it
@@ -172,7 +172,7 @@ class Pyxelator():
 
     ################################################################################
     # arguments: input_image_route: directory of the images to pixelate and make a gif of
-    # returns: None 
+    # returns:   None 
     ################################################################################
     def generate_pixels_and_gif(this, input_image_route):
         # We calculate the output dir 
