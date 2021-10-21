@@ -51,18 +51,18 @@
                 <!-- L E F T -->
                 <div id="left-footer-div">
                     {%if posts.page != 0%}
-                        <a class="page-link" href={{ url_for('home', pagenum = posts.page-1) }}> {{posts.page - 1}} </a>
+                        <a class="page-link" href={{ url_for('home', pagenum = posts.page-1) }}> {{posts.page}} </a>
                     {%endif%}
                 </div>
                 <!-- C E N T E R -->
                 <div id="center-footer-div">
-                    {{posts.page}}
+                    {{posts.page + 1}}
                 </div>
 
                 <!-- R I G H T -->
                 <div id="right-footer-div">
                     {% if not posts.isLastPage and not posts.isVoidNextPage %}
-                        <a class="page-link" href = {{ url_for('home', pagenum = posts.page+1) }}> {{posts.page + 1}} </a>
+                        <a class="page-link" href = {{ url_for('home', pagenum = posts.page+1) }}> {{posts.page + 2}} </a>
                     {% endif %}
                 </div>
 
