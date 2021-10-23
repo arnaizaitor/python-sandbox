@@ -170,7 +170,7 @@ padding-left: 25px;
 
 #post-body{
     padding-left: 55px;
-    height: 100vh;
+    height: auto;
     color: rgb(90, 200, 250);
     font-size: 11px;
     padding-right: 40px;
@@ -192,12 +192,13 @@ padding-left: 25px;
 
 #post-index-body{
     margin-left: 20vw;
-    height: auto;
     width: 58vw;
     margin-right: 21vw;
     padding-top: 21px;
     padding-bottom: 35px;
     margin-bottom: 45px;
+
+    min-height: 100vh;
 
     background-color: rgb(82, 85, 89);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
@@ -206,6 +207,10 @@ padding-left: 25px;
 #post-main{
     background-repeat: no-repeat, repeat;
     height: 100vh;
-    padding-bottom: 25px;
     background-color: rgb(50, 50, 50);
+}
+
+#void-div{
+    height: 35px;
+    width: auto;
 }
